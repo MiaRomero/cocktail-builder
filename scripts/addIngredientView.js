@@ -4,10 +4,9 @@ possibleBarIngredients.name = [];
 possibleBarIngredients.id = [];
 
 possibleBarIngredients.fillInTypeahead = function (){
-  var url = 'http://www.cocktailbuilder.com/json/ingredientList?callback=ingredientList';
   $.ajax({
     type: 'GET',
-    url: url,
+    url: 'http://www.cocktailbuilder.com/json/ingredientList?callback=ingredientList',
     async: false,
     jsonpCallback: 'ingredientList',
     contentType: 'application/json',
@@ -17,30 +16,18 @@ possibleBarIngredients.fillInTypeahead = function (){
       possibleBarIngredients.name = possibleBarIngredients.map(function(object){
         return object.Name;
       });
-      $('input.typeahead').typeahead({
-        source: possibleBarIngredients.name
+      $('#autocomplete').autocomplete({
+        lookup: possibleBarIngredients.name,
+        minChars: 2,
+        onSelect: function () {
+          var newIngredient = '<li>' + $('#autocomplete').val() + '</li>';
+          $('#addedIngredients').append(newIngredient);
+          $('#autocomplete').val('');
+        }
       });
     },
     error: function(e) {
       console.log(e.message);
     }
-  });
-};
-
-
-var ingredient = '';
-possibleBarIngredients.displayChosenIngredient = function (){
-  $('#ingredientTypeahead').on('keyup', function(event) {
-    if(event.which == 13) {
-      console.log('infunction');
-      var ingredient = $('#ingredientTypeahead').val();
-      console.log(ingredient);
-    }
-  });
-  $('#ingredientTypeahead').on('click', function(event){
-    event.preventDefault();
-    console.log('infunction');
-    var ingredient = $('#ingredientTypeahead').val();
-    console.log(ingredient);
   });
 };
