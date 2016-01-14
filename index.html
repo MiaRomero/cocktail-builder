@@ -4,21 +4,23 @@
 
   <head>
     <title>Cocktail Builder</title>
-    <link rel='stylesheet' href='vendor/styles/bootstrap/css/bootstrap.css' type='text/css'>
+    <link rel='stylesheet' href='styles/normalize.css' type='text/css'>
+    <link rel='stylesheet' href='styles/modules.css' type='text/css'>
     <script src='http://code.jquery.com/jquery-2.2.0.js'></script>
   </head>
 
   <body>
+    <p>What do you have in your bar?</p>
+    <input id='autocomplete' type='text' name='ingredient' placeholder='add an ingredient'/>
 
-    <div id='ingredientInput'>
-      <input id='ingredientTypeahead' class='typeahead' type='text' data-provide='typeahead' autocomplete='false' placeholder='add an ingredient'>
-        <div id='chosenIngredient'>
-          <p>Your bar has: </p>
-          <ul id='addedIngredients'></ul>
-        </div>
+    <div id='ingredientInput' class="autocomplete-suggestions"></div>
+
+    <div id='chosenIngredient'>
+      <p>Ingredients on hand: </p>
+      <ul id='addedIngredients'></ul>
     </div>
 
-    <script src='vendor/scripts/bootstrap_typeahead.js'></script>
+    <script src='vendor/scripts/jquery.autocomplete.js'></script>
     <script src='scripts/addIngredientView.js'></script>
     <script src='scripts/addIngredientController.js'></script>
     <script src='scripts/index.js'></script>
