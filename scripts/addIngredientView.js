@@ -1,3 +1,5 @@
+
+console.log('loading view script');
 var possibleBarIngredients = {};
 
 possibleBarIngredients.name = [];
@@ -12,6 +14,7 @@ possibleBarIngredients.fillInTypeahead = function (){
     contentType: 'application/json',
     dataType: 'jsonp',
     success: function(data) {
+      console.log('in ajax success function');
       possibleBarIngredients = data;
       possibleBarIngredients.name = possibleBarIngredients.map(function(object){
         return object.Name;
@@ -31,3 +34,4 @@ possibleBarIngredients.fillInTypeahead = function (){
     }
   });
 };
+console.log('at end of view script');
