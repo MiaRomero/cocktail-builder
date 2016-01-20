@@ -1,9 +1,6 @@
-console.log('loading controller script');
-
 var addIngredientController = {};
 
 addIngredientController.show = function(){
-  console.log('in controller.show function');
-  possibleBarIngredients.fillInTypeahead();
+  myBar.getTemplates();
+  possibleBarIngredients.determineDataLocation();
 };
-console.log('at end of controller script');

@@ -15,12 +15,15 @@
 
     <div id='ingredientInput' class="autocomplete-suggestions"></div>
 
-    <div id='chosenIngredient'>
+    <div id='ingredientsInMyBar'>
       <p>Ingredients on hand: </p>
-      <ul id='addedIngredients'></ul>
+      <ul id='addedIngredients'>
+      </ul>
     </div>
 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
     <script src='vendor/scripts/jquery.autocomplete.js'></script>
+    <script src='scripts/handlebar_helpers.js'></script>
     <script src='scripts/addIngredientView.js'></script>
     <script src='scripts/addIngredientController.js'></script>
     <script src='scripts/index.js'></script>
