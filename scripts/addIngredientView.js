@@ -58,17 +58,10 @@ var possibleBarIngredients = {
       contentType: 'application/json',
       dataType: 'jsonp',
       success: function(data) {
-              console.log('ajax success');
-              console.log('data' + data);
         possibleBarIngredients.ingredientObjects = data;
-              console.log('object property' + possibleBarIngredients.ingredientObjects);
-              console.log('assigning local storage');
-        localStorage.setItem('storedIngredientsList', possibleBarIngredients.ingredientObjects);
-              console.log('below is local storage variable');
-              console.log(localStorage.getItem('storedIngredientsList'));
+        var stringifyData = JSON.stringify(data);
+        localStorage.setItem('storedIngredientsList', stringifyData);
         possibleBarIngredients.fillInTypeahead();
-
-
       },
       error: function(e) {
         console.log(e.message);
@@ -77,14 +70,10 @@ var possibleBarIngredients = {
   },
 
   determineDataLocation: function() {
-    var storedIngredientsList = localStorage.getItem('storedIngredientsList');
+    var storedIngredientsList = JSON.parse(localStorage.getItem('storedIngredientsList'));
     if(storedIngredientsList !== null && storedIngredientsList.length > 0){
-              console.log('storedList' + storedIngredientsList);
       possibleBarIngredients.ingredientObjects = storedIngredientsList;
-              console.log('using stored list');
-              console.log('object property' + possibleBarIngredients.ingredientObjects);
       possibleBarIngredients.fillInTypeahead();
-
     }
     else{
       possibleBarIngredients.getPossibleIngredients();
@@ -92,14 +81,10 @@ var possibleBarIngredients = {
   },
 
   fillInTypeahead: function() {
-    console.log('in typeahead');
-    console.log('objectproperty' + possibleBarIngredients['ingredientObjects']);
-
     possibleBarIngredients['ingredientObjects'].forEach(function(object){
       possibleBarIngredients.name.push(object.Name);
-
     });
-    console.log('name array' + possibleBarIngredients.name);
+
     $('#autocomplete').autocomplete({
       lookup: possibleBarIngredients.name,
       minChars: 2,
