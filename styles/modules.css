@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+
 }
 
 .autocomplete-suggestions {
@@ -28,4 +29,13 @@ body {
 }
 #ingredientInput {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  #addIngredientsToBar {
+  }
+
+  img {
+    width: 100%;
+  }
 }

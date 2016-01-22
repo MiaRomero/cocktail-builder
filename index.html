@@ -4,6 +4,7 @@
 
   <head>
     <title>Cocktail Builder</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'>
     <link rel='stylesheet' href='vendor/styles/bootstrap/css/bootstrap.min.css' type='text/css'>
     <link rel='stylesheet' href='styles/modules.css' type='text/css'>
@@ -11,15 +12,17 @@
   </head>
 
   <body>
-    <p>What do you have in your bar?</p>
-    <input id='autocomplete' type='text' name='ingredient' placeholder='add an ingredient'/>
+    <div id='addIngredientsToBar'>
+      <p>What do you have in your bar?</p>
+      <input id='autocomplete' type='text' name='ingredient' placeholder='add an ingredient'/>
 
-    <div id='ingredientInput' class="autocomplete-suggestions"></div>
+      <div id='ingredientInput' class="autocomplete-suggestions"></div>
 
-    <div id='ingredientsInMyBar'>
-      <p>Ingredients on hand: </p>
-      <ul id='addedIngredients'>
-      </ul>
+      <div id='ingredientsInMyBar'>
+        <p>Ingredients on hand: </p>
+        <ul id='addedIngredients'>
+        </ul>
+      </div>
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
