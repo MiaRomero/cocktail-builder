@@ -12,6 +12,7 @@ body {
   padding: 2px 5px;
   white-space: nowrap; o
   verflow: hidden;
+  margin-bottom: 15px;
 }
 .autocomplete-selected {
   background: #96A7B0;
