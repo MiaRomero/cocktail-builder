@@ -59,9 +59,8 @@ var possibleBarIngredients = {
       dataType: 'jsonp',
       success: function(data) {
         possibleBarIngredients.ingredientObjects = data;
-        var stringifyData = JSON.stringify(data);
-        localStorage.setItem('storedIngredientsList', stringifyData);
-        possibleBarIngredients.fillInTypeahead();
+        possibleBarIngredients.fillInIngredientDB();
+        possibleBarIngredients.fillInTypeahead(possibleBarIngredients.ingredientObjects);
       },
       error: function(e) {
         console.log(e.message);
@@ -70,18 +69,31 @@ var possibleBarIngredients = {
   },
 
   determineDataLocation: function() {
-    var storedIngredientsList = JSON.parse(localStorage.getItem('storedIngredientsList'));
-    if(storedIngredientsList !== null && storedIngredientsList.length > 0){
-      possibleBarIngredients.ingredientObjects = storedIngredientsList;
-      possibleBarIngredients.fillInTypeahead();
-    }
-    else{
-      possibleBarIngredients.getPossibleIngredients();
-    }
+    webDB.execute(
+      'SELECT name FROM barIngredients',
+      function (results){
+        if(results.length > 0){
+          possibleBarIngredients.fillInTypeahead(results);
+        }
+        else{
+          possibleBarIngredients.getPossibleIngredients();
+        }
+    });
   },
 
-  fillInTypeahead: function() {
+  fillInIngredientDB: function () {
     possibleBarIngredients['ingredientObjects'].forEach(function(object){
+      webDB.execute([
+        {
+          'sql': 'INSERT INTO barIngredients (ID, Name, Popularity, NormalizedIngredientID) VALUES (?, ?, ?, ?);',
+          'data': [object.ID, object.Name, object.Popularity, object.NormalizedIngredientID],
+        }
+      ]);
+    });
+  },
+
+  fillInTypeahead: function(array) {
+    array.forEach(function(object){
       possibleBarIngredients.name.push(object.Name);
     });
 

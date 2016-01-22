@@ -33,8 +33,13 @@ body {
 }
 
 @media screen and (max-width: 500px) {
-  #addIngredientsToBar {
+  .autocomplete-suggestion {
+    font-size: 18px;
   }
+  #addIngredientsToBar {
+    font-size: 18px;
+  }
+
 
   img {
     width: 100%;
