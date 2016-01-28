@@ -74,6 +74,8 @@ var possibleBarIngredients = {
       function (results){
         if(results.length > 0){
           possibleBarIngredients.fillInTypeahead(results);
+          cocktailsToMake.getIngredientsByID(); //here to test
+
         }
         else{
           possibleBarIngredients.getPossibleIngredients();
