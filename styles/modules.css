@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+
 }
 
 .autocomplete-suggestions {
@@ -11,6 +12,7 @@ body {
   padding: 2px 5px;
   white-space: nowrap; o
   verflow: hidden;
+  margin-bottom: 15px;
 }
 .autocomplete-selected {
   background: #96A7B0;
@@ -28,4 +30,18 @@ body {
 }
 #ingredientInput {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .autocomplete-suggestion {
+    font-size: 18px;
+  }
+  #addIngredientsToBar {
+    font-size: 18px;
+  }
+
+
+  img {
+    width: 100%;
+  }
 }

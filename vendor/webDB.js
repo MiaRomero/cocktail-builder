@@ -22,7 +22,7 @@ webDB.init = function() {
   try {
     if (openDatabase) {
       webDB.verbose(true);
-      webDB.connect('gbt', 'violence tracker database', 5*1024*1024);
+      webDB.connect('ingredients', 'Ingredients List', 5*1024*1024);
       webDB.setupTables();
     } else {
       console.log('Web Databases not supported.');
@@ -38,19 +38,10 @@ webDB.connect = function (database, title, size) {
 
 webDB.setupTables = function () {
   html5sql.process(
-    'CREATE TABLE IF NOT EXISTS stateAbbreviations (name VARCHAR(255) NOT NULL, abbreviation VARCHAR(255) NOT NULL);',
-    // 'CREATE TABLE IF NOT EXISTS congressContact (id INTEGER PRIMARY KEY, sortname VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, link VARCHA(255) NOT NULL);',
+    'CREATE TABLE IF NOT EXISTS barIngredients (ID INTEGER NOT NULL, Name VARCHAR(255) NOT NULL, Popularity INTEGER, NormalizedIngredientID INTEGER NOT NULL);',
     function() {
       // on success
-      console.log('Success setting up table 1.');
-    }
-  );
-  html5sql.process(
-    // 'CREATE TABLE IF NOT EXISTS stateAbbreviations (id INTEGER PRIMARY KEY, name VARCHAR(255) NOT NULL, abbreviation VARCHAR(255) NOT NULL);',
-    'CREATE TABLE IF NOT EXISTS congressContact (id INTEGER PRIMARY KEY, sortname VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, link VARCHA(255) NOT NULL);',
-    function() {
-      // on success
-      console.log('Success setting up table 2.');
+      console.log('Success setting up table');
     }
   );
 };
@@ -70,7 +61,7 @@ webDB.reconnect = function() {
   try {
     if (openDatabase) {
       webDB.verbose(true);
-      webDB.connect('gbt', 'violence tracker database', 5*1024*1024);
+      webDB.connect('ingredients', 'Ingredients List', 5*1024*1024);
       //webDB.setupTables();
     } else {
       console.log('Web Databases not supported.');
