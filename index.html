@@ -6,30 +6,37 @@
     <title>Cocktail Builder</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'/>
     <link rel='stylesheet' href='styles/normalize.css' type='text/css'>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel='stylesheet' href='styles/modules.css' type='text/css'>
     <script src='http://code.jquery.com/jquery-2.2.0.js'></script>
   </head>
 
   <body>
-    <div id='addIngredientsToBar'>
-      <p>What do you have in your bar?</p>
-      <input id='autocomplete' type='text' name='ingredient' placeholder='add an ingredient'/>
 
-      <div id='ingredientInput' class="autocomplete-suggestions"></div>
+    <div class='container-fluid'>
+      <div class='row'>
 
-      <div id='ingredientsInMyBar'>
-        <p>Ingredients on hand: </p>
-        <ul id='addedIngredients'>
-        </ul>
-      </div>
-    </div>
+        <div class='col-md-4' id='addIngredientsToBar'>
+          <p>What do you have in your bar?</p>
+          <input id='autocomplete' type='text' name='ingredient' placeholder='add an ingredient'/>
+          <div id='ingredientInput' class="autocomplete-suggestions"></div>
+          <div id='ingredientsInMyBar'>
+            <p>Ingredients on hand: </p>
+            <ul id='addedIngredients'>
+            </ul>
+          </div>
+        </div>
 
-    <div id='cocktailsToMake'>
-      <p>Cocktails to Make: </p>
-      <ul id='cocktailList'>
-      </ul>
-    </div>
+        <div class='col-md-4' id='cocktailsToMake'>
+          <p>Cocktails to Make: </p>
+          <ul id='cocktailList'>
+          </ul>
+        </div>
+
+        <div class='col-md-4'></div>
+
+      </div> <!--end row-->
+    </div><!--end container-->
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
     <script src='vendor/scripts/jquery.autocomplete.js'></script>

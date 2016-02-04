@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+  font-size: 16px;
 
 }
 
@@ -31,12 +32,24 @@ body {
 #ingredientInput {
   display: none;
 }
+#ingredientsInMyBar {
+  margin-top: 20px;
+}
+#ingredientsInMyBar p{
+  font-weight: bold;
+}
+#cocktailsToMake p{
+  font-weight: bold;
+}
 
 @media screen and (max-width: 500px) {
   .autocomplete-suggestion {
     font-size: 18px;
   }
   #addIngredientsToBar {
+    font-size: 18px;
+  }
+  #cocktailsToMake {
     font-size: 18px;
   }
 
