@@ -1,3 +1,3 @@
 $(function () {
-  addIngredientController.show();
+  addIngredientController.show(cocktailsToMakeController.show);
 });

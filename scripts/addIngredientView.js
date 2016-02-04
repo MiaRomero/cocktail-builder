@@ -49,7 +49,7 @@ var possibleBarIngredients = {
   name: [],
   id: [],
 
-  getPossibleIngredients: function (){
+  getPossibleIngredients: function (cocktailsToMakeController){
     $.ajax({
       type: 'GET',
       url: 'http://www.cocktailbuilder.com/json/ingredientList?callback=ingredientList',
@@ -61,6 +61,7 @@ var possibleBarIngredients = {
         possibleBarIngredients.ingredientObjects = data;
         possibleBarIngredients.fillInIngredientDB();
         possibleBarIngredients.fillInTypeahead(possibleBarIngredients.ingredientObjects);
+        cocktailsToMakeController();
       },
       error: function(e) {
         console.log(e.message);
@@ -68,19 +69,18 @@ var possibleBarIngredients = {
     });
   },
 
-  determineDataLocation: function() {
+  determineDataLocation: function(cocktailsToMakeController) {
     webDB.execute(
       'SELECT name FROM barIngredients',
       function (results){
         if(results.length > 0){
           possibleBarIngredients.fillInTypeahead(results);
-          cocktailsToMake.getIngredientsByID(); //here to test
-
+          cocktailsToMakeController();
         }
         else{
-          possibleBarIngredients.getPossibleIngredients();
+          possibleBarIngredients.getPossibleIngredients(cocktailsToMakeController);
         }
-    });
+      });
   },
 
   fillInIngredientDB: function () {
@@ -104,6 +104,7 @@ var possibleBarIngredients = {
       minChars: 2,
       onSelect: function () {
         myBar.listHTML();
+        cocktailsToMakeController.show();
         $('#autocomplete').val('');
       }
     });
