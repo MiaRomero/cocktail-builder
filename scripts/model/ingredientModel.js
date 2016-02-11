@@ -1,6 +1,5 @@
 var possibleBarIngredients = {
   ingredientObjects: [],
-  //name: [],
 
   determineDataLocation: function(cocktailsToMakeController) {
     webDB.execute(
@@ -9,7 +8,7 @@ var possibleBarIngredients = {
         if(results.length > 0){
           possibleBarIngredients.ingredientObjects = results;
           allPossibleIngredientsView.fillInTypeahead(possibleBarIngredients.ingredientObjects);
-          cocktailsToMakeController();
+          //cocktailsToMakeController();
         }
         else{
           possibleBarIngredients.getPossibleIngredients(cocktailsToMakeController);
@@ -29,7 +28,7 @@ var possibleBarIngredients = {
         possibleBarIngredients.ingredientObjects = data;
         possibleBarIngredients.fillInIngredientDB();
         allPossibleIngredientsView.fillInTypeahead(possibleBarIngredients.ingredientObjects);
-        cocktailsToMakeController();
+        //cocktailsToMakeController();
       },
       error: function(e) {
         console.log(e.message);
@@ -75,6 +74,7 @@ var myBarModel = {
             myBarModel['ingredientNames'].push(object.Name);
           });
           myBarView.showMyBarView(myBarModel['ingredientObjects']);
+          cocktailsToMakeController.show();
         }
       });
   },

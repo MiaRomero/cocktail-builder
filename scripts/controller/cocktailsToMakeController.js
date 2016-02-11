@@ -1,6 +1,6 @@
 var cocktailsToMakeController = {
 
   show: function() {
-    //cocktailsView.showCocktails();
+    cocktailsView.showCocktails();
   }
 };

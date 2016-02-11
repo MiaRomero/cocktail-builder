@@ -1,23 +1,13 @@
 var cocktailsToMake = {
-  ingredientString: '',
   paramString: '',
   cocktailObjects: [],
-  listTemplate: '',
 
-  createIngredientString: function (){
-    $('#addedIngredients li').each(function(index){
-      cocktailsToMake.ingredientString += ('"' + $(this).text() + '"' + ', ');
+  createParamString: function (){
+    $('#addedIngredients li').each(function() {
+      var ID = $(this).data('id');
+      cocktailsToMake.paramString += (ID + '-');
     });
-    var lastIndex = cocktailsToMake.ingredientString.lastIndexOf(',');
-    return cocktailsToMake.ingredientString.substr(0, lastIndex);
-  },
-
-  createParamString: function (rows){
-    rows.forEach(function (row){
-      cocktailsToMake.paramString += (row.ID + '-');
-    });
-    var lastIndex = cocktailsToMake.paramString.lastIndexOf('-');
-    cocktailsToMake.paramString = cocktailsToMake.paramString.substr(0, lastIndex);
+    cocktailsToMake.paramString = cocktailsToMake['paramString'].slice(0, -1);
   },
 
   getCocktailList: function () {
@@ -31,7 +21,7 @@ var cocktailsToMake = {
       data: {'max': 25, 'param': cocktailsToMake.paramString},
       success: function (data){
         cocktailsToMake.cocktailObjects = data;
-        cocktailsView.getTemplate(cocktailsView.listHTML);
+        cocktailsView.listHTML();
       },
       error: function(e) {
         console.log(e.message);
@@ -39,16 +29,8 @@ var cocktailsToMake = {
     });
   },
 
-  lookupPossibleCocktails: function (rows) {
-    cocktailsToMake.createParamString(rows);
+  lookupPossibleCocktails: function () {
+    cocktailsToMake.createParamString();
     cocktailsToMake.getCocktailList();
-  },
-
-  getPossibleCocktails: function () {
-    webDB.execute ('SELECT ID FROM barIngredients WHERE Name IN (' + cocktailsToMake.createIngredientString() + ');',
-     cocktailsToMake.lookupPossibleCocktails
-    );
   }
-
-
 };

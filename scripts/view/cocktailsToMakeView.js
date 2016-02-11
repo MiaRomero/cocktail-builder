@@ -1,13 +1,11 @@
 var cocktailsView = {
 
-  
-
   listHTML: function (){
     $('#cocktailList').empty();
-    $('#cocktailList').append(cocktailsToMake.listTemplate(cocktailsToMake));
+    $('#cocktailList').append(siteTemplates.cocktailsToMakeTemplate(cocktailsToMake));
   },
 
   showCocktails: function () {
-    cocktailsToMake.getPossibleCocktails();
+    cocktailsToMake.lookupPossibleCocktails();
   },
 };
