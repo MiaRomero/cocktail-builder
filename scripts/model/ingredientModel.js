@@ -8,7 +8,6 @@ var possibleBarIngredients = {
         if(results.length > 0){
           possibleBarIngredients.ingredientObjects = results;
           allPossibleIngredientsView.fillInTypeahead(possibleBarIngredients.ingredientObjects);
-          //cocktailsToMakeController();
         }
         else{
           possibleBarIngredients.getPossibleIngredients(cocktailsToMakeController);
@@ -28,7 +27,6 @@ var possibleBarIngredients = {
         possibleBarIngredients.ingredientObjects = data;
         possibleBarIngredients.fillInIngredientDB();
         allPossibleIngredientsView.fillInTypeahead(possibleBarIngredients.ingredientObjects);
-        //cocktailsToMakeController();
       },
       error: function(e) {
         console.log(e.message);
