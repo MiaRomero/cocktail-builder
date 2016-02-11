@@ -74,8 +74,7 @@ var myBarModel = {
           myBarModel['ingredientObjects'].forEach(function (object){
             myBarModel['ingredientNames'].push(object.Name);
           });
-          myBarView.showMySavedBarView(myBarModel['ingredientObjects']);
-          // $('#addedIngredients').append(siteTemplates.localBarTemplate(myBarModel));
+          myBarView.showMyBarView(myBarModel['ingredientObjects']);
         }
       });
   },
@@ -99,6 +98,6 @@ var myBarModel = {
     myBarModel.ingredientNames.push(newIngred.Name);
     newIngred = possibleBarIngredients.getIngredientInfo(newIngred, newIngred.Name);
     myBarModel.ingredientObjects.push(newIngred);
-    myBarModel.addToMyBarDB(newIngred); //need to add both name and ID to database
+    myBarModel.addToMyBarDB(newIngred);
   }
 };

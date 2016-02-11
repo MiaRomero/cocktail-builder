@@ -1,6 +1,6 @@
 var myBarView = {
 
-  showMySavedBarView: function (myBarModel) {
+  showMyBarView: function (myBarModel) {
     $('#addedIngredients').append(siteTemplates.localBarTemplate(myBarModel));
   },
 
@@ -9,7 +9,8 @@ var myBarView = {
     newIngred.Name = $('#autocomplete').val();
     if(!myBarModel.DuplicateIngredients(newIngred.Name)){
       myBarModel.addIngredientToBar(newIngred);
-      $('#addedIngredients').append(siteTemplates.ingredientListTemplate(myBarModel));//add newIngred.ID as well - change template
+      $('#addedIngredients').empty();
+      myBarView.showMyBarView(myBarModel['ingredientObjects']);
     }
   }
 };
