@@ -2,7 +2,7 @@ var cocktailsView = {
 
   listHTML: function (){
     $('#cocktailList').empty();
-    $('#cocktailList').append(siteTemplates.cocktailsToMakeTemplate(cocktailsToMake));
+    $('#cocktailList').append(siteTemplatesModel.cocktailsToMakeTemplate(cocktailsToMake));
   },
 
   showCocktails: function () {

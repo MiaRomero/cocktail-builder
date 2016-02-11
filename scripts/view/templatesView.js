@@ -7,7 +7,7 @@ var siteTemplatesView = {
   },
 
   getAllTemplates: function () {
-    siteTemplatesView.callTemplatesModelFunctions(myBarModel.ifMyBarExists);
+    siteTemplatesModel.getTemplatesInOrder(myBarModel.ifMyBarExists);
   }
 
 

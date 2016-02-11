@@ -2,7 +2,7 @@ var myBarView = {
 
   showMyBarView: function (myBarModel) {
     $('#cocktailsToMake p').text('Cocktails to Make:');
-    $('#addedIngredients').append(siteTemplates.localBarTemplate(myBarModel));
+    $('#addedIngredients').append(siteTemplatesModel.localBarTemplate(myBarModel));
   },
 
   listHTML: function (){
