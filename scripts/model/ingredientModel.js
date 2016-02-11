@@ -74,7 +74,7 @@ var myBarModel = {
           myBarModel['ingredientObjects'].forEach(function (object){
             myBarModel['ingredientNames'].push(object.Name);
           });
-          myBarView.showMySavedBarView(myBarModel);
+          myBarView.showMySavedBarView(myBarModel['ingredientObjects']);
           // $('#addedIngredients').append(siteTemplates.localBarTemplate(myBarModel));
         }
       });
