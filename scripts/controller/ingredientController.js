@@ -1,7 +1,7 @@
-var addIngredientController = {
+var ingredientController = {
 
   show: function(cocktailsToMakeController){
-    myBar.getTemplates();
+    //siteTemplatesController.getAllTemplates();
     possibleBarIngredients.determineDataLocation(cocktailsToMakeController);
   }
 
