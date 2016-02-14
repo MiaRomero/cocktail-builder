@@ -1,3 +1,4 @@
 $(function () {
-  addIngredientController.show();
+  siteTemplatesController.callTemplatesView();
+  ingredientController.show(cocktailsToMakeController.show);
 });

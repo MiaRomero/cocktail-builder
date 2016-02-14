@@ -41,7 +41,14 @@ webDB.setupTables = function () {
     'CREATE TABLE IF NOT EXISTS barIngredients (ID INTEGER NOT NULL, Name VARCHAR(255) NOT NULL, Popularity INTEGER, NormalizedIngredientID INTEGER NOT NULL);',
     function() {
       // on success
-      console.log('Success setting up table');
+      console.log('Success setting up barIngredients table');
+    }
+  );
+  html5sql.process(
+    'CREATE TABLE IF NOT EXISTS myBar (ID INTEGER NOT NULL, Name VARCHAR(255) NOT NULL, Popularity INTEGER, NormalizedIngredientID INTEGER NOT NULL);',
+    function () {
+      // on success
+      console.log('Success setting up myBar table');
     }
   );
 };
