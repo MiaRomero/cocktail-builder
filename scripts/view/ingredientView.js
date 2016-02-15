@@ -36,3 +36,16 @@ var allPossibleIngredientsView = {
     });
   }
 };
+
+$('#editButton').on('click', function (event){
+  event.preventDefault();
+  $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+});
+
+$('#deleteIngredient').on('click', function (event){
+  event.preventDefault();
+  $('input:checked').each(function (index){
+    console.log($('input:checked').parent().text());
+  });
+
+});

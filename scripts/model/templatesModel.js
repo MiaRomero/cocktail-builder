@@ -2,6 +2,7 @@ var siteTemplatesModel = {
   ingredientListTemplate: '',
   localBarTemplate: '',
   cocktailsToMakeTemplate: '',
+  editMyBarTemplate: '',
 
   getIngredientListTemplate: function () {
     $.get('templates/ingredientsInMyBar_hbs.html')
@@ -18,13 +19,20 @@ var siteTemplatesModel = {
       });
   },
 
+  getEditMyBarTemplate: function (){
+    $.get('templates/editMyBar_hbs.html')
+      .done( function(templateReturn){
+        siteTemplatesModel.editMyBarTemplate = Handlebars.compile(templateReturn);
+      });
+  },
+
   getTemplatesInOrder: function (ifMyBarExists){
     $.get('templates/cocktailsToMake_hbs.html') //cocktailsToMake Template
       .done(function (templateReturn){
         siteTemplatesModel.cocktailsToMakeTemplate = Handlebars.compile(templateReturn);
+        siteTemplatesModel.getEditMyBarTemplate();
         siteTemplatesModel.getIngredientListTemplate();
         siteTemplatesModel.getLocalBarTemplate(ifMyBarExists);
-        //listHTML();
       });
   }
 
