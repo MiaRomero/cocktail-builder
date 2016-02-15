@@ -1,11 +1,16 @@
 var myBarView = {
 
   showMyBarView: function (myBarModel) {
-    $('#cocktailsToMake p').text('Cocktails to Make:');
     $('#addedIngredients').append(siteTemplatesModel.localBarTemplate(myBarModel));
+    if($('#addedIngredients li').length > 0){
+      $('#cocktailsToMake p').text('Cocktails to Make:');
+    }
+    else{
+      $('#cocktailsToMake p').text('');
+    }
   },
 
-  listHTML: function (){
+  listHTMLAddIngred: function (){
     var newIngred = {};
     newIngred.Name = $('#autocomplete').val();
     if(!myBarModel.DuplicateIngredients(newIngred.Name)){
@@ -13,6 +18,12 @@ var myBarView = {
       $('#addedIngredients').empty();
       myBarView.showMyBarView(myBarModel['ingredientObjects']);
     }
+  },
+
+  listHTMLRemoveIngred: function (ID){
+    myBarModel.removeIngredientFromBar(ID);
+    $('#addedIngredients').empty();
+    myBarView.showMyBarView(myBarModel['ingredientObjects']);
   }
 };
 
@@ -29,7 +40,7 @@ var allPossibleIngredientsView = {
       lookup: allPossibleIngredientsView.name,
       minChars: 2,
       onSelect: function () {
-        myBarView.listHTML();
+        myBarView.listHTMLAddIngred();
         cocktailsToMakeController.show();
         $('#autocomplete').val('');
       }
@@ -44,8 +55,10 @@ $('#editButton').on('click', function (event){
 
 $('#deleteIngredient').on('click', function (event){
   event.preventDefault();
-  $('input:checked').each(function (index){
-    console.log($('input:checked').parent().text());
+  $('input:checked').each(function (){
+    var ID = $(this).data('id');
+    myBarView.listHTMLRemoveIngred(ID);
   });
+  cocktailsToMakeController.show();
 
 });

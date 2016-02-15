@@ -3,6 +3,7 @@ var cocktailsToMake = {
   cocktailObjects: [],
 
   createParamString: function (){
+    cocktailsToMake.paramString = '';
     $('#addedIngredients li').each(function() {
       var ID = $(this).data('id');
       cocktailsToMake.paramString += (ID + '-');
