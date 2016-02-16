@@ -116,9 +116,6 @@ var myBarModel = {
       }
     });
     myBarModel['ingredientObjects'].splice(ingredIndex, 1);
-    myBarModel.removeFromMyBarDB(ID);
-
-
-    
+    myBarModel.removeFromMyBarDB(ID);  
   }
 };

@@ -4,10 +4,6 @@ var cocktailsToMake = {
 
   createParamString: function (){
     cocktailsToMake.paramString = '';
-    // $('#addedIngredients li').each(function() {
-    //   var ID = $(this).data('id');
-    //   cocktailsToMake.paramString += (ID + '-');
-    // });
     myBarModel['ingredientObjects'].map(function (object, index, array){
       var ID = object.ID;
       cocktailsToMake.paramString += (ID + '-');
