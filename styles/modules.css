@@ -3,7 +3,13 @@ body {
   font-size: 16px;
 
 }
-
+.jumbotron {
+  background-image: url("../styles/img/barphoto.png");
+  background-size: cover;
+}
+.jumbotron h1, p {
+  margin-left: 20px;
+}
 .autocomplete-suggestions {
   border: 1px solid #999;
   background: #FFF;
@@ -32,6 +38,9 @@ body {
 .hidden{
   visibility: hidden;
 }
+#autocomplete{
+  margin-left: 20px;
+}
 #ingredientInput {
   display: none;
 }
@@ -41,8 +50,21 @@ body {
 #ingredientsInMyBar p{
   font-weight: bold;
 }
+#addedIngredients li {
+  list-style: none;
+}
+#editButton {
+  margin-left: 20px;
+}
 #cocktailsToMake p{
   font-weight: bold;
+}
+#cocktailList button{
+  display: flex;
+  flex-direction: column;
+  border-style: hidden;
+  font-size: 14px;
+
 }
 
 
