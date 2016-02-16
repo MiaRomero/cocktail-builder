@@ -2,7 +2,7 @@ var myBarView = {
 
   showMyBarView: function (myBarModel) {
     $('#addedIngredients').append(siteTemplatesModel.localBarTemplate(myBarModel));
-    if($('#addedIngredients li').length > 0){
+    if($('#addedIngredients li').length > 0 || $('#addedIngredients div').length > 0){
       $('#cocktailsToMake p').text('Cocktails to Make:');
     }
     else{
@@ -23,7 +23,9 @@ var myBarView = {
   listHTMLRemoveIngred: function (ID){
     myBarModel.removeIngredientFromBar(ID);
     $('#addedIngredients').empty();
-    myBarView.showMyBarView(myBarModel['ingredientObjects']);
+    //myBarView.showMyBarView(myBarModel['ingredientObjects']);
+    $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+
   }
 };
 
@@ -50,7 +52,14 @@ var allPossibleIngredientsView = {
 
 $('#editButton').on('click', function (event){
   event.preventDefault();
-  $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+  if($('#editButton').text() === 'Edit Ingredient List'){
+    $('#editButton').text('Done');
+    $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+  }
+  else {
+    $('#editButton').text('Edit Ingredient List');
+    $('#addedIngredients').empty().append(myBarView.showMyBarView(myBarModel['ingredientObjects']));
+  }
 });
 
 $('#deleteIngredient').on('click', function (event){
@@ -60,5 +69,4 @@ $('#deleteIngredient').on('click', function (event){
     myBarView.listHTMLRemoveIngred(ID);
   });
   cocktailsToMakeController.show();
-
 });
