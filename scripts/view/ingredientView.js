@@ -23,9 +23,7 @@ var myBarView = {
   listHTMLRemoveIngred: function (ID){
     myBarModel.removeIngredientFromBar(ID);
     $('#addedIngredients').empty();
-    //myBarView.showMyBarView(myBarModel['ingredientObjects']);
     $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
-
   }
 };
 
@@ -55,10 +53,12 @@ $('#editButton').on('click', function (event){
   if($('#editButton').text() === 'Edit Ingredient List'){
     $('#editButton').text('Done');
     $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+    $('#deleteIngredient').toggleClass('hidden');
   }
   else {
     $('#editButton').text('Edit Ingredient List');
     $('#addedIngredients').empty().append(myBarView.showMyBarView(myBarModel['ingredientObjects']));
+    $('#deleteIngredient').toggleClass('hidden', true);
   }
 });
 

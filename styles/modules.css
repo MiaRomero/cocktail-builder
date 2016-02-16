@@ -29,6 +29,9 @@ body {
   display: block;
   border-bottom: 1px solid #000;
 }
+.hidden{
+  visibility: hidden;
+}
 #ingredientInput {
   display: none;
 }
@@ -41,6 +44,7 @@ body {
 #cocktailsToMake p{
   font-weight: bold;
 }
+
 
 @media screen and (max-width: 500px) {
   .autocomplete-suggestion {
