@@ -38,6 +38,9 @@ body {
 .hidden{
   visibility: hidden;
 }
+.deleteIngredient{
+
+}
 #autocomplete{
   margin-left: 20px;
 }
@@ -52,9 +55,8 @@ body {
 }
 #addedIngredients li {
   list-style: none;
-}
-#editButton {
-  margin-left: 20px;
+  justify-content: flex-end;
+  margin: 10px;
 }
 #cocktailsToMake p{
   font-weight: bold;

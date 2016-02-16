@@ -59,8 +59,6 @@ var possibleBarIngredients = {
 
 var myBarModel = {
   ingredientObjects: [],
-  ingredientNames: [],
-  ingredientIDs: [],
 
   ifMyBarExists: function () {
     webDB.execute(
@@ -68,9 +66,6 @@ var myBarModel = {
       function (results){
         if(results.length > 0){
           myBarModel.ingredientObjects = results;
-          myBarModel['ingredientObjects'].forEach(function (object){
-            myBarModel['ingredientNames'].push(object.Name);
-          });
           myBarView.showMyBarView(myBarModel['ingredientObjects']);
           cocktailsToMakeController.show();
         }
@@ -102,7 +97,6 @@ var myBarModel = {
   },
 
   addIngredientToBar: function (newIngred){
-    //myBarModel.ingredientNames.push(newIngred.Name);
     newIngred = possibleBarIngredients.getIngredientInfo(newIngred, newIngred.Name);
     myBarModel.ingredientObjects.push(newIngred);
     myBarModel.addToMyBarDB(newIngred);
@@ -111,11 +105,11 @@ var myBarModel = {
   removeIngredientFromBar: function (ID){
     var ingredIndex = '';
     myBarModel['ingredientObjects'].map(function(object, index, array){
-      if(object.ID === ID){
+      if(object.ID == ID){
         ingredIndex = index;
       }
     });
     myBarModel['ingredientObjects'].splice(ingredIndex, 1);
-    myBarModel.removeFromMyBarDB(ID);  
+    myBarModel.removeFromMyBarDB(ID);
   }
 };

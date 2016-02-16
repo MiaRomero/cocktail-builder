@@ -1,4 +1,5 @@
 var myBarView = {
+  selectedIngredientID: '',
 
   showMyBarView: function (myBarModel) {
     $('#addedIngredients').append(siteTemplatesModel.localBarTemplate(myBarModel));
@@ -23,7 +24,7 @@ var myBarView = {
   listHTMLRemoveIngred: function (ID){
     myBarModel.removeIngredientFromBar(ID);
     $('#addedIngredients').empty();
-    $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
+    myBarView.showMyBarView(myBarModel['ingredientObjects']);
   }
 };
 
@@ -48,25 +49,9 @@ var allPossibleIngredientsView = {
   }
 };
 
-$('#editButton').on('click', function (event){
+$(document.body).on('click', '.deleteIngredient', function (event){
   event.preventDefault();
-  if($('#editButton').text() === 'Edit Ingredient List'){
-    $('#editButton').text('Done');
-    $('#addedIngredients').empty().append(siteTemplatesModel.editMyBarTemplate(myBarModel));
-    $('#deleteIngredient').toggleClass('hidden');
-  }
-  else {
-    $('#editButton').text('Edit Ingredient List');
-    $('#addedIngredients').empty().append(myBarView.showMyBarView(myBarModel['ingredientObjects']));
-    $('#deleteIngredient').toggleClass('hidden', true);
-  }
-});
-
-$('#deleteIngredient').on('click', function (event){
-  event.preventDefault();
-  $('input:checked').each(function (){
-    var ID = $(this).data('id');
-    myBarView.listHTMLRemoveIngred(ID);
-  });
+  myBarView.selectedIngredientID = event.currentTarget.parentElement.dataset.id;
+  myBarView.listHTMLRemoveIngred(myBarView.selectedIngredientID);
   cocktailsToMakeController.show();
 });
