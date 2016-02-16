@@ -13,7 +13,6 @@ var recipeModel = {
       data: {'param': ID},
       success: function (data){
         recipeModel.recipeObject = data;
-        console.log(recipeModel.recipeObject);
         recipeView.listHTML(ID);
       },
       error: function(e) {
@@ -22,10 +21,3 @@ var recipeModel = {
     });
   }
 };
-
-$(document.body).on('click', '.cocktailName' ,function(event){
-  event.preventDefault();
-  console.log(event);
-  recipeModel.currentCocktailID = event.currentTarget.dataset.id;
-  recipeModel.getRecipe(recipeModel.currentCocktailID);
-});
