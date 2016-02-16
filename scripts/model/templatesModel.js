@@ -3,6 +3,7 @@ var siteTemplatesModel = {
   localBarTemplate: '',
   cocktailsToMakeTemplate: '',
   editMyBarTemplate: '',
+  recipeTemplate: '',
 
   getIngredientListTemplate: function () {
     $.get('templates/ingredientsInMyBar_hbs.html')
@@ -15,26 +16,39 @@ var siteTemplatesModel = {
     $.get('templates/localBar_hbs.html')
       .done( function(templateReturn){
         siteTemplatesModel.localBarTemplate = Handlebars.compile(templateReturn);
+        siteTemplatesModel.getIngredientListTemplate();
         ifMyBarExists();
       });
   },
 
-  getEditMyBarTemplate: function (){
+  getEditMyBarTemplate: function (ifMyBarExists){
     $.get('templates/editMyBar_hbs.html')
       .done( function(templateReturn){
         siteTemplatesModel.editMyBarTemplate = Handlebars.compile(templateReturn);
+        siteTemplatesModel.getLocalBarTemplate(ifMyBarExists);
       });
   },
 
-  getTemplatesInOrder: function (ifMyBarExists){
-    $.get('templates/cocktailsToMake_hbs.html') //cocktailsToMake Template
-      .done(function (templateReturn){
+  getCocktailsToMakeTemplate: function (ifMyBarExists){
+    $.get('templates/cocktailsToMake_hbs.html')
+      .done( function(templateReturn){
         siteTemplatesModel.cocktailsToMakeTemplate = Handlebars.compile(templateReturn);
-        siteTemplatesModel.getEditMyBarTemplate();
-        siteTemplatesModel.getIngredientListTemplate();
-        siteTemplatesModel.getLocalBarTemplate(ifMyBarExists);
+        siteTemplatesModel.getEditMyBarTemplate(ifMyBarExists);
       });
-  }
+  },
 
+  getRecipeTemplate: function (ifMyBarExists){
+    $.get('templates/recipe_hbs.html')
+      .done( function(templateReturn){
+        siteTemplatesModel.recipeTemplate = Handlebars.compile(templateReturn);
+        siteTemplatesModel.getCocktailsToMakeTemplate(ifMyBarExists);
+      });
+  },
 
+  // getTemplatesInOrder: function (ifMyBarExists){
+  //   $.get('templates/recipe_hbs.html') //get recipe Template
+  //     .done(function (templateReturn){
+  //       siteTemplatesModel.recipeTemplate = Handlebars.compile(templateReturn);//
+  //     });
+  // }
 };
