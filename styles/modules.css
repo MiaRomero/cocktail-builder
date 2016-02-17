@@ -1,7 +1,15 @@
 body {
   padding: 20px;
   font-size: 16px;
-
+}
+div .recipe{
+  width: 300px;
+  white-space: normal;
+  word-break: break-word;
+  text-align: left;
+}
+button .cocktailName {
+  font-weight: bold;
 }
 .jumbotron {
   background-image: url("../styles/img/barphoto.png");
@@ -41,6 +49,7 @@ body {
 .deleteIngredient{
 
 }
+
 #autocomplete{
   margin-left: 20px;
 }
