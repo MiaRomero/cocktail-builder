@@ -4,26 +4,47 @@ var siteTemplatesModel = {
   recipeTemplate: '',
 
   getLocalBarTemplate: function (ifMyBarExists) {
-    $.get('templates/localBar_hbs.html')
-      .done( function(templateReturn){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/localBar_hbs.html',
+      cache: environment.isProd(),
+      success: function (templateReturn){
         siteTemplatesModel.localBarTemplate = Handlebars.compile(templateReturn);
         ifMyBarExists();
-      });
+      },
+      error: function(e) {
+        console.log(e.message);
+      }
+    });
   },
 
   getCocktailsToMakeTemplate: function (ifMyBarExists){
-    $.get('templates/cocktailsToMake_hbs.html')
-      .done( function(templateReturn){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/cocktailsToMake_hbs.html',
+      cache: environment.isProd(),
+      success: function(templateReturn){
         siteTemplatesModel.cocktailsToMakeTemplate = Handlebars.compile(templateReturn);
         siteTemplatesModel.getLocalBarTemplate(ifMyBarExists);
-      });
+      },
+      error: function (e){
+        console.log(e.message);
+      }
+    });
   },
 
   getRecipeTemplate: function (ifMyBarExists){
-    $.get('templates/recipe_hbs.html')
-      .done( function(templateReturn){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/recipe_hbs.html',
+      cache: environment.isProd(),
+      success: function (templateReturn){
         siteTemplatesModel.recipeTemplate = Handlebars.compile(templateReturn);
         siteTemplatesModel.getCocktailsToMakeTemplate(ifMyBarExists);
-      });
+      },
+      error: function (e){
+        console.log(e.message);
+      }
+    });
   },
 };
