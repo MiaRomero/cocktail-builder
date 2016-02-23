@@ -1,9 +1,23 @@
 body {
   padding: 20px;
   font-size: 16px;
-
 }
-
+div .recipe{
+  width: 200px;
+  white-space: normal;
+  word-break: break-word;
+  text-align: left;
+}
+button .cocktailName {
+  font-weight: bold;
+}
+.jumbotron {
+  background-image: url("../styles/img/barphoto.png");
+  background-size: cover;
+}
+.jumbotron h1, p {
+  margin-left: 20px;
+}
 .autocomplete-suggestions {
   border: 1px solid #999;
   background: #FFF;
@@ -29,6 +43,16 @@ body {
   display: block;
   border-bottom: 1px solid #000;
 }
+.hidden{
+  visibility: hidden;
+}
+.deleteIngredient{
+
+}
+
+#autocomplete{
+  margin-left: 20px;
+}
 #ingredientInput {
   display: none;
 }
@@ -38,9 +62,22 @@ body {
 #ingredientsInMyBar p{
   font-weight: bold;
 }
+#addedIngredients li {
+  list-style: none;
+  justify-content: flex-end;
+  margin: 10px;
+}
 #cocktailsToMake p{
   font-weight: bold;
 }
+#cocktailList button{
+  display: flex;
+  flex-direction: column;
+  border-style: hidden;
+  font-size: 14px;
+
+}
+
 
 @media screen and (max-width: 500px) {
   .autocomplete-suggestion {

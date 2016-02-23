@@ -59,8 +59,6 @@ var possibleBarIngredients = {
 
 var myBarModel = {
   ingredientObjects: [],
-  ingredientNames: [],
-  ingredientIDs: [],
 
   ifMyBarExists: function () {
     webDB.execute(
@@ -68,9 +66,6 @@ var myBarModel = {
       function (results){
         if(results.length > 0){
           myBarModel.ingredientObjects = results;
-          myBarModel['ingredientObjects'].forEach(function (object){
-            myBarModel['ingredientNames'].push(object.Name);
-          });
           myBarView.showMyBarView(myBarModel['ingredientObjects']);
           cocktailsToMakeController.show();
         }
@@ -86,16 +81,35 @@ var myBarModel = {
     ]);
   },
 
+  removeFromMyBarDB: function (ID)  {
+    webDB.execute([
+      {
+        'sql': 'DELETE FROM myBar WHERE ID = ?',
+        'data': [ID]
+      }
+    ]);
+  },
+
   DuplicateIngredients: function (newIngredName) {
-    return myBarModel.ingredientNames.some(function (ce, index, array){
-      return newIngredName === array[index];
+    return myBarModel.ingredientObjects.some(function (ce, index, array){
+      return newIngredName === array[index].Name;
     });
   },
 
   addIngredientToBar: function (newIngred){
-    myBarModel.ingredientNames.push(newIngred.Name);
     newIngred = possibleBarIngredients.getIngredientInfo(newIngred, newIngred.Name);
     myBarModel.ingredientObjects.push(newIngred);
     myBarModel.addToMyBarDB(newIngred);
+  },
+
+  removeIngredientFromBar: function (ID){
+    var ingredIndex = '';
+    myBarModel['ingredientObjects'].map(function(object, index, array){
+      if(object.ID == ID){
+        ingredIndex = index;
+      }
+    });
+    myBarModel['ingredientObjects'].splice(ingredIndex, 1);
+    myBarModel.removeFromMyBarDB(ID);
   }
 };

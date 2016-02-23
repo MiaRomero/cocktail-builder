@@ -1,32 +1,50 @@
 var siteTemplatesModel = {
-  ingredientListTemplate: '',
   localBarTemplate: '',
   cocktailsToMakeTemplate: '',
-
-  getIngredientListTemplate: function () {
-    $.get('templates/ingredientsInMyBar_hbs.html')
-      .done( function(templateReturn){
-        siteTemplatesModel.ingredientListTemplate = Handlebars.compile(templateReturn);
-      });
-  },
+  recipeTemplate: '',
 
   getLocalBarTemplate: function (ifMyBarExists) {
-    $.get('templates/localBar_hbs.html')
-      .done( function(templateReturn){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/localBar_hbs.html',
+      cache: environment.isProd(),
+      success: function (templateReturn){
         siteTemplatesModel.localBarTemplate = Handlebars.compile(templateReturn);
         ifMyBarExists();
-      });
+      },
+      error: function(e) {
+        console.log(e.message);
+      }
+    });
   },
 
-  getTemplatesInOrder: function (ifMyBarExists){
-    $.get('templates/cocktailsToMake_hbs.html') //cocktailsToMake Template
-      .done(function (templateReturn){
+  getCocktailsToMakeTemplate: function (ifMyBarExists){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/cocktailsToMake_hbs.html',
+      cache: environment.isProd(),
+      success: function(templateReturn){
         siteTemplatesModel.cocktailsToMakeTemplate = Handlebars.compile(templateReturn);
-        siteTemplatesModel.getIngredientListTemplate();
         siteTemplatesModel.getLocalBarTemplate(ifMyBarExists);
-        //listHTML();
-      });
-  }
+      },
+      error: function (e){
+        console.log(e.message);
+      }
+    });
+  },
 
-
+  getRecipeTemplate: function (ifMyBarExists){
+    $.ajax({
+      type: 'GET',
+      url: 'templates/recipe_hbs.html',
+      cache: environment.isProd(),
+      success: function (templateReturn){
+        siteTemplatesModel.recipeTemplate = Handlebars.compile(templateReturn);
+        siteTemplatesModel.getCocktailsToMakeTemplate(ifMyBarExists);
+      },
+      error: function (e){
+        console.log(e.message);
+      }
+    });
+  },
 };
